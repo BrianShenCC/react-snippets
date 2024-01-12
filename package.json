@@ -2,6 +2,10 @@
   "name": "react-snippets",
   "version": "0.1.0",
   "private": true,
+  "repository": {
+    "url": "https://github.com/BrianShenCC/react-snippets",
+    "type": "git"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -9,6 +13,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.2.6",
     "@monaco-editor/react": "^4.6.0",
     "antd": "^5.12.8",
     "classnames": "^2.5.1",

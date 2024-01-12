@@ -35,7 +35,7 @@ export default async function Layout({ children }: { children: ReactNode }) {
 
   return (
     <ExampleLayout examples={examples}>
-      <ShowCase codes={codes} title={exampleDetail?.name}>
+      <ShowCase name={exampleName} codes={codes} title={exampleDetail?.name}>
         {children}
       </ShowCase>
     </ExampleLayout>

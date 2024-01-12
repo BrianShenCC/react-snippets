@@ -1,23 +1,46 @@
 "use client";
-import { FC, ReactNode } from "react";
-import { CodeDetail } from "../../types/common";
 import { Collapse, CollapseProps } from "antd";
+import { FC, ReactNode, useRef, useState } from "react";
+import { CodeDetail } from "../../types/common";
 
-import Editor from "@monaco-editor/react";
 import { CodeEditor } from "../CodeEditor";
 
+import packageJson from "../../../package.json";
+import { GithubOutlined } from "@ant-design/icons";
+
 type ShowCaseProps = {
+  name: string;
   title?: string;
   children: ReactNode;
   codes: CodeDetail[];
 };
 
-export const ShowCase: FC<ShowCaseProps> = ({ title, children, codes }) => {
-  const items: CollapseProps["items"] = codes.map((codeDetail) => ({
-    key: codeDetail.path,
-    label: codeDetail.path,
-    children: <CodeEditor {...codeDetail}></CodeEditor>,
-  }));
+export const ShowCase: FC<ShowCaseProps> = ({ name, title, children, codes }) => {
+  const [activeKey, setActiveKey] = useState<string>();
+  const items: CollapseProps["items"] = codes.map((codeDetail) => {
+    const absolutePath = codeDetail.path?.replace(/^\.\//, "");
+    return {
+      key: codeDetail.path,
+      label: (
+        <div className="flex">
+          <div className="flex-1 w-0 truncate">{absolutePath}</div>
+          <div className="px-1">
+            <GithubOutlined
+              onClick={(e) => {
+                e.stopPropagation();
+                goto(absolutePath);
+              }}
+            />
+          </div>
+        </div>
+      ),
+      children: <CodeEditor {...codeDetail}></CodeEditor>,
+    };
+  });
+
+  const goto = (absolutePath: string) => {
+    window.open(`${packageJson.repository.url}/tree/main/${absolutePath}`);
+  };
 
   return (
     <div className="example px-5 py-5 w-full">
@@ -32,29 +55,12 @@ export const ShowCase: FC<ShowCaseProps> = ({ title, children, codes }) => {
         <div className="example-showcase overflow-y-auto p-6 max-h-[100vh_-_160px]">{children}</div>
         <div className="border-b border-gray-300 dark:border-gray-600" />
         <div className="example-option h-8 p-4 flex justify-end items-center gap-4">
-          {/* <i i-mdi-reload icon-btn @click="reload()" />
-                <!-- <i i-carbon-chemistry icon-btn /> -->
-                <i i-ri-github-line icon-btn @click="goEditPage()" />
-                <i v-if="!copied" i-carbon-copy icon-btn @click="copyCode()" />
+          {/* <i className="i-ri-github-line icon-btn" /> */}
+          {/* <i v-if="!copied" i-carbon-copy icon-btn @click="copyCode()" />
                 <i v-if="copied" i-carbon-checkbox-checked icon-btn />
                 <i i-carbon-code icon-btn @click="toggleSourceVisible()" /> */}
         </div>
-        <Collapse items={items} />
-
-        <code></code>
-        {/* <SourceCode v-show="sourceVisible" :source="source" :source-path="sourcePath" /> */}
-
-        <div
-          className="bg-white dark:bg-black sticky left-0 right-0 bottom-0 z-10"
-          //   v-show="sourceVisible"
-          //   @click="toggleSourceVisible(false)"
-        >
-          <div className="border-t border-gray-300 dark:border-gray-600" />
-          <div className="inline-flex justify-center items-center icon-btn text-sm my-2 w-full">
-            {/* <HiddenSourceSvg /> */}
-            <span>隐藏源代码</span>
-          </div>
-        </div>
+        <Collapse items={items} activeKey={activeKey} onChange={(e) => setActiveKey(e as string)} />
       </div>
     </div>
   );
