@@ -25,6 +25,7 @@ export const Surround: FC<SurroundProps> = ({ className, tags }) => {
             className="box"
             key={tag}
             style={{
+              //@ts-ignore
               "--margin-top": `${randomNum(-40, 40)}vh`,
               "--margin-left": `${randomNum(5, 30)}vw`,
               "--animation-duration": `${randomNum(6, 30)}s`,

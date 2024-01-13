@@ -101,8 +101,11 @@ class WaterMark {
         mask_div.id = `mask_div${i}${j}`;
         mask_div.appendChild(document.createTextNode(this.settings.watermark_txt));
         mask_div.style.webkitTransform = `rotate(-${this.settings.watermark_angle}deg)`;
+        // @ts-ignore
         mask_div.style.MozTransform = `rotate(-${this.settings.watermark_angle}deg)`;
+        // @ts-ignore
         mask_div.style.msTransform = `rotate(-${this.settings.watermark_angle}deg)`;
+        // @ts-ignore
         mask_div.style.OTransform = `rotate(-${this.settings.watermark_angle}deg)`;
         mask_div.style.transform = `rotate(-${this.settings.watermark_angle}deg)`;
         mask_div.style.visibility = "";
@@ -112,6 +115,7 @@ class WaterMark {
         mask_div.style.overflow = "hidden";
         mask_div.style.zIndex = "9999";
         // mask_div.style.border="solid #eee 1px";
+        // @ts-ignore
         mask_div.style.opacity = this.settings.watermark_alpha;
         mask_div.style.fontSize = this.settings.watermark_fontsize;
         mask_div.style.fontFamily = this.settings.watermark_font;
