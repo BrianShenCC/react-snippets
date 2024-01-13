@@ -8,8 +8,19 @@ type ExampleMap = {
 };
 
 const exampleMap: ExampleMap = {
-  weather: { name: "Dynamic Weather Effects" },
+  weather: { name: "Weather Effects" },
   waterMark: { name: "Water Mark" },
+  ["3dSurround"]: { name: "3D Surround" },
+  neomorphismStyle: { name: "Neomorphism Style" },
+  gradientShadows: { name: "Gradient Shadows" },
+  gradientBorder: { name: "Gradient Border" },
+  gradientBorderButton: { name: "Gradient Button" },
+  frostedGlassEffect: { name: "Frosted Glass Effect" },
+  macTerminal: { name: "Mac Terminal" },
+  pacmanLoading: { name: "Pacman Loading" },
+  clipPath: { name: "Clip Path" },
+  clayPotteryStyle: { name: "Clay Pottery Style" },
+  planeFlyToPointer: { name: "Plane Fly To Pointer" },
 };
 
 export const getExampleDetail = (name: string): Example => {

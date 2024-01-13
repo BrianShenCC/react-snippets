@@ -43,7 +43,7 @@ export const ShowCase: FC<ShowCaseProps> = ({ name, title, children, codes }) =>
   };
 
   return (
-    <div className="example px-5 py-5 w-full">
+    <div className="example px-5 py-5 w-full text-center">
       <div className="border border-gray-3 dark:border-gray-600 rounded shadow-md">
         {title && (
           <div>

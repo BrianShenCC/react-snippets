@@ -1,0 +1,43 @@
+.surrounding {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 260px);
+  /* 视野距离 体现近大远小效果 */
+  perspective: 1000px;
+}
+
+.surrounding .box,
+.surrounding .tag {
+  position: absolute;
+  font-size: 1.5rem;
+  transform-style: preserve-3d;
+  animation: rotY 0s linear infinite;
+  animation-duration: var(--animation-duration);
+  animation-delay: var(--animation-delay);
+}
+
+.surrounding .box,
+.surrounding .tag {
+  transform-style: preserve-3d;
+
+  /* 文字竖行显示 */
+  /* writing-mode: vertical-lr; */
+}
+
+.surrounding .box {
+  margin-top: var(--margin-top);
+}
+
+.surrounding .tag {
+  margin-left: var(--margin-left);
+  /* 反向动画 */
+  animation-direction: reverse;
+}
+
+@keyframes rotY {
+  to {
+    transform: rotateY(1turn);
+  }
+}
