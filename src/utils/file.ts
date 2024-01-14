@@ -9,6 +9,7 @@ console.log();
 
 export const getExamples = async () => {
   const dir = await fs.readdir(path.resolve(process.cwd(), examplePath), { withFileTypes: true });
+  console.log(dir.map((dir) => dir.name));
   return dir.filter((dirent) => dirent.isDirectory()).map((dirent) => dirent.name);
 };
 
